@@ -2,7 +2,7 @@ import { Directive, Input, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validator } from '@angular/forms';
 
 @Directive()
-export class BaseComponent implements ControlValueAccessor {
+export abstract class BaseComponent implements ControlValueAccessor {
   @Input() label: string;
   @Input() type?: string = 'text';
   @Input() placeholder?: string = '';
@@ -12,7 +12,7 @@ export class BaseComponent implements ControlValueAccessor {
   @Input() error?: string;
   @Input() validators?: Validator[] = [];
 
-  value: any = '';
+  value: any;
 
   constructor() {
   }
@@ -33,6 +33,7 @@ export class BaseComponent implements ControlValueAccessor {
   }
 
   refreshValue(input: any): void {
+    console.log(input)
     this.writeValue(input);
     this.onChange(input);
   }

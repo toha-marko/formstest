@@ -11,6 +11,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { InputComponent } from './components/input/input.component';
 import { OnlyCyrillicDirective } from './directives/only-cyrillic.directive';
+import { RadioComponent } from './components/radio/radio.component';
+import { SelectComponent } from './components/select/select.component';
+import { DobComponent } from './components/dob/dob.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 const MatComponents = [
   MatInputModule,
@@ -24,7 +28,11 @@ const MatComponents = [
 ];
 
 const Components = [
-  InputComponent
+  InputComponent,
+  DobComponent,
+  RadioComponent,
+  SelectComponent,
+  TextareaComponent
 ];
 
 const Directives = [

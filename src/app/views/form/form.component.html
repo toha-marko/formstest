@@ -1,3 +1,20 @@
 <form [formGroup]="profileForm">
-  <app-form-input formControlName="name"></app-form-input>
+  <app-form-input
+    formControlName="name"
+    label="Ваше ФИО"
+    placeholder="Иванов Иван Иванович"
+    [cyrillic]="true"
+    [error]=""
+  ></app-form-input>
+  <app-form-input
+    formControlName="email"
+    label="Ваш email"
+    placeholder="mail@mail.ru"
+    type="email"
+    [error]=""
+  ></app-form-input>
+  <app-form-radio
+  formControlName="gender"
+  type="gender"
+  ></app-form-radio>
 </form>

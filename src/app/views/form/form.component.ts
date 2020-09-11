@@ -9,13 +9,14 @@ import { FormBuilder } from '@angular/forms';
 export class FormComponent implements OnInit {
 
   profileForm = this.fb.group({
-    name: ['FIO'],
-    email: [''],
+    name: [null],
+    gender: [null],
+    email: [null],
   });
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.profileForm.get('name').valueChanges.subscribe(console.log)
+    this.profileForm.valueChanges.subscribe(console.log)
   }
 
 }

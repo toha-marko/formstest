@@ -2,7 +2,7 @@
   <mat-label *ngIf="label">{{ label }}</mat-label>
   <input
     matInput
-    onlyCyrillic
+    [onlyCyrillic]="cyrillic"
     (updateValue)="refreshValue($event)"
     [type]="type"
     [placeholder]="placeholder"
@@ -22,7 +22,5 @@
     <mat-icon>close</mat-icon>
   </button>
   <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
-  <mat-error *ngIf="error">
-    {{ error }}
-  </mat-error>
+  <mat-error *ngIf="error">{{ error }}</mat-error>
 </mat-form-field>

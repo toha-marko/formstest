@@ -1,0 +1,8 @@
+<mat-label *ngIf="label">{{ label }}</mat-label>
+<mat-radio-group aria-label="выбор" [value]="value" (change)="refreshValue($event.value)">
+  <ng-container *ngFor="let item of list">
+    <mat-radio-button [value]="item">{{ item.value }}</mat-radio-button>
+  </ng-container>
+</mat-radio-group>
+<mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+<mat-error *ngIf="error">{{ error }}</mat-error>
