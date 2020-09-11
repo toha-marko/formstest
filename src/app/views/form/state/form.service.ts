@@ -4,6 +4,6 @@ import { FormStore } from './form.store';
 @Injectable({ providedIn: 'root' })
 export class FormService {
 
-  constructor(private formStore: FormStore) { //update store
+  constructor(private formStore: FormStore) { // update store
   }
 }

@@ -8,9 +8,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { InputComponent } from './components/input/input.component';
+import { OnlyCyrillicDirective } from './directives/only-cyrillic.directive';
 
-const components = [
+const MatComponents = [
   MatInputModule,
   MatDatepickerModule,
   MatButtonModule,
@@ -21,11 +23,23 @@ const components = [
   MatFormFieldModule
 ];
 
+const Components = [
+  InputComponent
+];
+
+const Directives = [
+  OnlyCyrillicDirective
+];
+
 @NgModule({
-  declarations: components,
+  declarations: [...Components, ...Directives],
   imports: [
-    CommonModule
+    CommonModule,
+    MatComponents
   ],
-  exports: components
+  exports: Components,
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } }
+  ]
 })
 export class SharedModule { }

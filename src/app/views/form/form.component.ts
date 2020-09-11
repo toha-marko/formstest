@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  profileForm = this.fb.group({
+    name: ['FIO'],
+    email: [''],
+  });
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.profileForm.get('name').valueChanges.subscribe(console.log)
   }
 
 }
