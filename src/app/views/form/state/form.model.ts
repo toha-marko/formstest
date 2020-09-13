@@ -1,12 +1,11 @@
-export type FormModel = {
-  firstName: string;
-  lastName: string;
-};
+import { idValue } from '@misc/typing/id-value.type';
 
-export function createForm(params: Partial<FormModel> = {}): FormModel {
-  return {
-    firstName: '',
-    lastName: '',
-    ...params
-  } as FormModel;
-}
+export type FormModel = {
+  name: string,
+  gender: idValue,
+  dob: any,
+  familyStatus: idValue | null,
+  kids: number | null,
+  email: string,
+  comment: string | null
+};

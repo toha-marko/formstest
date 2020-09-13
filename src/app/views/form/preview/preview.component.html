@@ -1,1 +1,9 @@
-<p>preview works!</p>
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>{{ result.name }}</mat-card-title>
+    <mat-card-subtitle> {{ result.dob | date }}</mat-card-subtitle>
+    <ng-container *ngFor="let item of keys">
+      <p>{{ result[item]?.value ? result[item].value : result[item] }}</p>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

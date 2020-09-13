@@ -7,14 +7,18 @@ import { FormComponent } from './form.component';
 const routes: Routes = [
   {
     path: '',
-    component: FormComponent,
-    pathMatch: 'full'
+    component: FormComponent
   },
   {
     path: 'preview',
     loadChildren: () => import('./preview/preview.module').then(m => m.PreviewModule),
-    canActivate: [DirectAccessGuard]
+    canActivate: [DirectAccessGuard],
+    pathMatch: 'full'
   },
+  {
+    path: '**',
+    redirectTo: '/form'
+  }
 ];
 
 @NgModule({

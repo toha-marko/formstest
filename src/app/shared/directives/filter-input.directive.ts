@@ -8,6 +8,10 @@ export class FilterInputDirective implements OnInit {
   @HostListener('keypress', ['$event']) onKeyPress(event) { return this.onKeyPressIterator(event); }
 
   @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) { return this.onPasteIterator(event); }
+
+  private onKeyPressIterator = (_: any) => true;
+  private onPasteIterator = (_: any) => { };
+
   constructor(private el: ElementRef) {
   }
 
@@ -22,13 +26,10 @@ export class FilterInputDirective implements OnInit {
     }
   }
 
-  private onKeyPressIterator = (_: any) => true;
-  private onPasteIterator = (_: any) => {};
-
   private validateCyrillicField(event): void {
     setTimeout(() => {
-      const filteredValue = this.el.nativeElement.value.replace(/[^а-яё]/gi,
-        '').replace(/\s/g, '');
+      const filteredValue = this.el.nativeElement.value.replace(/[^а-яё,. ]/gi,
+        '');
       event.preventDefault();
       this.updateValue.emit(filteredValue);
     }, 100);
@@ -50,7 +51,7 @@ export class FilterInputDirective implements OnInit {
   }
 
   private cyrillicKeyPless(event): boolean {
-    return (/^[а-яё ]/i).test(event.key);
+    return (/^[а-яё ,.]/i).test(event.key);
   }
 
   private numericKeyPress(event): boolean {

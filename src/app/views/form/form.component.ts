@@ -5,6 +5,7 @@ import { idValue } from '@misc/typing/id-value.type';
 import { combineLatest, defer, merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, distinctUntilChanged, map, startWith, take, tap } from 'rxjs/operators';
 import { validateDOB } from '@validators/dob.validator';
+import { FormService } from './state/form.service';
 
 @Component({
   selector: 'app-form',
@@ -40,7 +41,10 @@ export class FormComponent implements OnInit, OnDestroy {
   ];
 
 
-  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {
+  constructor(
+    private fb: FormBuilder,
+    private cdRef: ChangeDetectorRef,
+    private formService: FormService) {
   }
 
   ngOnInit(): void {
@@ -53,14 +57,11 @@ export class FormComponent implements OnInit, OnDestroy {
         const currentDate = new Date();
         return currentDate.setFullYear(currentDate.getFullYear() - 18) >= new Date(dob).getTime();
       }),
-      distinctUntilChanged(),
+      distinctUntilChanged(), // set dynamic validator to field if needed
       tap(adult => {
-        if (adult) {
-          this.profileForm.controls.familyStatus.setValidators(adult ? Validators.required : []);
-          setTimeout(() => this.profileForm.controls.familyStatus.updateValueAndValidity());
-        } else {
-          this.profileForm.get('familyStatus').patchValue(null);
-        }
+        this.profileForm.controls.familyStatus.setValidators(adult ? Validators.required : []);
+        this.profileForm.get('familyStatus').patchValue(null);
+        setTimeout(() => this.profileForm.controls.familyStatus.updateValueAndValidity());
       })
     );
 
@@ -77,19 +78,17 @@ export class FormComponent implements OnInit, OnDestroy {
 
   submit(): void {
     if (this.profileForm.invalid) {
-      this.$submitFail.next(true);
-    } else {
-      console.log('OK');
+      return this.$submitFail.next(true);
     }
-    console.log(this.profileForm.value);
+    this.formService.update(this.profileForm.value);
   }
 
   private resetForm(): void { // form reset after 3 tries
     this.profileForm.reset();
     this.$submitFail.pipe(
-      take(2),
+      take(3),
       tap(() => this.formSubmitDisabled = true),
-      delay(1000),
+      delay(10000),
       tap(() => this.formSubmitDisabled = false)
     ).subscribe({
       next: () => this.cdRef.detectChanges(),

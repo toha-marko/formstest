@@ -17,6 +17,7 @@ import { DobComponent } from './components/dob/dob.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
+import { MatCardModule } from '@angular/material/card';
 
 const MatComponents = [
   MatNativeDateModule,
@@ -27,7 +28,8 @@ const MatComponents = [
   MatIconModule,
   MatRadioModule,
   MatSelectModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatCardModule
 ];
 
 const Components = [
@@ -49,7 +51,7 @@ const Directives = [
     ReactiveFormsModule,
     MatComponents
   ],
-  exports: Components,
+  exports: [...Components, MatCardModule],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'legacy' } }
   ]
