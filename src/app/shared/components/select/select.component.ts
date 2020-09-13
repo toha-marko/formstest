@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, forwardRef, Input, OnDestroy } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { idValue } from '@misc/typing/id-value.type';
 import { Subscription } from 'rxjs';
+import { idValue } from '@misc/typing/id-value.type';
 import { BaseComponent } from '../base-component.class';
 
 @Component({

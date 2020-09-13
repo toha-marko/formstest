@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { distinctUntilArrayItemChanged } from '@datorama/akita';
-import { idValue } from '@misc/typing/id-value.type';
 import { combineLatest, defer, merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, distinctUntilChanged, map, startWith, take, tap } from 'rxjs/operators';
+import { distinctUntilArrayItemChanged } from '@datorama/akita';
+import { idValue } from '@misc/typing/id-value.type';
 import { validateDOB } from '@validators/dob.validator';
 import { FormService } from './state/form.service';
 
