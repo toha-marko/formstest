@@ -10,13 +10,16 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { InputComponent } from './components/input/input.component';
-import { OnlyCyrillicDirective } from './directives/only-cyrillic.directive';
+import { FilterInputDirective } from './directives/filter-input.directive';
 import { RadioComponent } from './components/radio/radio.component';
 import { SelectComponent } from './components/select/select.component';
 import { DobComponent } from './components/dob/dob.component';
-import { TextareaComponent } from './components/textarea/textarea.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
 
 const MatComponents = [
+  MatNativeDateModule,
   MatInputModule,
   MatDatepickerModule,
   MatButtonModule,
@@ -32,17 +35,18 @@ const Components = [
   DobComponent,
   RadioComponent,
   SelectComponent,
-  TextareaComponent
+  ButtonComponent
 ];
 
 const Directives = [
-  OnlyCyrillicDirective
+  FilterInputDirective
 ];
 
 @NgModule({
   declarations: [...Components, ...Directives],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatComponents
   ],
   exports: Components,

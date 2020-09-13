@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+  align-self: flex-start;
+  margin-top: 4rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  // width: 100%;
+  // padding: 3rem;
+  & > * {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 3rem;
+  }
+  & > *:last-child {
+    text-align: right;
+  }
+}

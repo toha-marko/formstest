@@ -1,0 +1,19 @@
+@import '../base-component.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+mat-radio-group {
+  flex: 1;
+  display: flex;
+  // justify-content: flex-end;
+  & > * {
+    padding-left: 0.6rem;
+  }
+}
+
+.greyColor {
+  color: rgba(0,0,0,.54);
+}

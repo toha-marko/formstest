@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, forwardRef, Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseComponent } from '../base-component.class';
 

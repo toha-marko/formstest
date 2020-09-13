@@ -1,26 +1,62 @@
-<mat-form-field class="example-form-field">
-  <mat-label *ngIf="label">{{ label }}</mat-label>
-  <input
-    matInput
-    [onlyCyrillic]="cyrillic"
-    (updateValue)="refreshValue($event)"
-    [type]="type"
-    [placeholder]="placeholder"
-    [value]="value"
-    [disabled]="disabled"
-    (input)="refreshValue($event.target.value)"
-    (blur)="onTouched()"
-  />
-  <button
-    mat-button
-    *ngIf="value"
-    matSuffix
-    mat-icon-button
-    aria-label="Очистить"
-    (click)="refreshValue('')"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
-  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
-  <mat-error *ngIf="error">{{ error }}</mat-error>
-</mat-form-field>
+<ng-container
+  *ngTemplateOutlet="type === 'textarea' ? textarea : input"
+></ng-container>
+<mat-error *ngIf="error">{{ error }}</mat-error>
+
+<ng-template #input>
+  <mat-form-field class="example-form-field">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <input
+      matInput
+      [filterInput]="{ cyrillic: cyrillic, number: type === 'number' }"
+      (updateValue)="refreshValue($event)"
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      (input)="refreshValue($event.target.value)"
+      (blur)="onTouched()"
+    />
+    <button
+      mat-button
+      *ngIf="value"
+      matSuffix
+      mat-icon-button
+      aria-label="Очистить"
+      (click)="refreshValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+  </mat-form-field>
+</ng-template>
+
+<ng-template #textarea>
+  <mat-form-field class="example-form-field">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <textarea
+      matInput
+      [filterInput]="{ cyrillic: cyrillic }"
+      (updateValue)="refreshValue($event)"
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      (input)="refreshValue($event.target.value)"
+      (blur)="onTouched()"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+    ></textarea>
+    <button
+      mat-button
+      *ngIf="value"
+      matSuffix
+      mat-icon-button
+      aria-label="Очистить"
+      (click)="refreshValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+  </mat-form-field>
+</ng-template>

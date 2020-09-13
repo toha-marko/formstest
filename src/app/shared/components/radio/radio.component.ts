@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, forwardRef } from '@angular/core';
 import { BaseComponent } from '../base-component.class';
 import { idValue } from '@type/id-value.type';
-import { NG_VALUE_ACCESSOR, RadioControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-form-radio',
@@ -14,7 +14,7 @@ import { NG_VALUE_ACCESSOR, RadioControlValueAccessor } from '@angular/forms';
       multi: true
     }
   ],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioComponent extends BaseComponent implements OnInit {
   @Input() name;
@@ -29,7 +29,7 @@ export class RadioComponent extends BaseComponent implements OnInit {
         id: 1,
         value: 'Женский'
         }];
-      this.label = 'Укажите Ваш пол';
+      this.label = 'Ваш пол';
     }
   }
 }

@@ -1,1 +1,15 @@
-<p>dob works!</p>
+<mat-form-field>
+  <mat-label *ngIf="label">{{ label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [matDatepickerFilter]="filterDob"
+    placeholder="дд/мм/гггг"
+    (dateChange)="refreshValue($event.value)"
+    [value]="value"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+</mat-form-field>
+<mat-error *ngIf="error">{{ error }}</mat-error>

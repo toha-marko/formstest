@@ -28,6 +28,9 @@
       "@type/*": [
         "src/app/misc/typing/*"
       ],
+      "@validators/*": [
+        "src/app/misc/validators/*"
+      ],
       "@/*": [
         "src/*"
       ]

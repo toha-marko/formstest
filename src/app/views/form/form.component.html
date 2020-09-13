@@ -1,20 +1,55 @@
-<form [formGroup]="profileForm">
+<form [formGroup]="profileForm" (submit)="submit()">
   <app-form-input
     formControlName="name"
     label="Ваше ФИО"
     placeholder="Иванов Иван Иванович"
     [cyrillic]="true"
-    [error]=""
+    [error]="profileFormErrors['name$'] | async"
   ></app-form-input>
+
+  <app-form-radio
+    formControlName="gender"
+    type="gender"
+    [error]="profileFormErrors['gender$'] | async"
+  ></app-form-radio>
+  <app-form-dob
+    formControlName="dob"
+    type="dob"
+    [error]="profileFormErrors['dob$'] | async"
+  ></app-form-dob>
+
+  <app-form-select
+    *ngIf="familyStatus18Plus$ | async"
+    formControlName="familyStatus"
+    label="Семейное положение"
+    [list]="familyStatuses$ | async"
+    [error]="profileFormErrors['familyStatus$'] | async"
+  ></app-form-select>
+
+  <app-form-input
+    formControlName="kids"
+    label="Дети"
+    placeholder="0"
+    type="number"
+    [error]="profileFormErrors['kids$'] | async"
+  ></app-form-input>
+
   <app-form-input
     formControlName="email"
     label="Ваш email"
-    placeholder="mail@mail.ru"
+    placeholder="mail@yourmail.ru"
     type="email"
-    [error]=""
+    [error]="profileFormErrors['email$'] | async"
   ></app-form-input>
-  <app-form-radio
-  formControlName="gender"
-  type="gender"
-  ></app-form-radio>
+
+  <app-form-input
+    formControlName="comment"
+    label="Комментарии"
+    type="textarea"
+    placeholder="Сообщите нам о чем считаете нужным"
+    [cyrillic]="true"
+    [error]="profileFormErrors['comment$'] | async"
+  ></app-form-input>
+
+  <app-form-button [disabled]="formSubmitDisabled">Отправить</app-form-button>
 </form>
